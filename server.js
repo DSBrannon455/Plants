@@ -3,6 +3,23 @@ const app = express()
 const plant = require('./models/plant.js')
 const PORT = 3000
 
+// MIDDLEWARE
+app.use(express.urlencoded({extended: true}))
+
+// include method override packge
+// allows for use of PUT and DELETE requests on our forms
+// https://www.npmjs.com/package/method-override#override-using-a-query-value
+const methodOverride = require('method-override')
+
+// HTTP METHODS
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods
+
+// these following methods are known as middleware and help us handle our requests BEFORE we send it back as a response
+
+// tell the app to use method override
+// We'll be adding a query parameter to our delete form named _method
+app.use(methodOverride('_method'))
+
 // set up static assets (images/css/client-side JS/etc/audio)
 // https://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'))
@@ -23,6 +40,12 @@ app.get("/plant", (req,res) => {
     res.render('index.ejs', {
         plant: plant
     })
+})
+
+app.post('/plant', (req,res) => {
+    console.log(req.body)
+    plant.push(req.body)
+    res.redirect('/plant')
 })
 
 // Show route

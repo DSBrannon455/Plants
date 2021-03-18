@@ -11,6 +11,12 @@ app.get('/', (req,res) => {
     res.send('Welcome to the Plant App')
 })
 
+//Set up New ROUTE "new.ejs"
+app.get('/plant/new', (req, res)=>{
+    res.render('new.ejs')
+    console.log(req.body)
+})
+
 //Index route
 app.get("/plant", (req,res) => {
     //res.send(plant)

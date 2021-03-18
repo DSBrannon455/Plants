@@ -9,7 +9,10 @@ app.get('/', (req,res) => {
 
 //Index route
 app.get("/plant", (req,res) => {
-    res.send(plant)
+    //res.send(plant)
+    res.render('index.ejs', {
+        plant: plant
+    })
 })
 
 app.listen(3000, () => {

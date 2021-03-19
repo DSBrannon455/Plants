@@ -48,6 +48,13 @@ app.post('/plant', (req,res) => {
     res.redirect('/plant')
 })
 
+app.delete('/plant/:id', (req, res) => {
+    // remove the item from the array
+    plant.splice(req.params.id, 1)
+    // redirect back to the index
+    res.redirect('/plant')
+})
+
 // Show route
 app.get('/plant/:id', (req, res) => {
     //res.send(pokemon[req.params.id])

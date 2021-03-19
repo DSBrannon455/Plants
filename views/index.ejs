@@ -20,11 +20,16 @@
 
     <ul>
         <%for (let i = 0; i < plant.length; i++) {%>
-            <a href="/plant/<%=i%>">
-                <li>
-                    <%=plant[i].name%>
-                </li>
-            </a>
+            
+            <li>
+                <a href="/plant/<%=i%>">
+                <%=plant[i].name%>
+                </a>
+                <form method="POST" action="/plant/<%= i %>?_method=DELETE">
+                    <input type="submit" value="DELETE"/>
+                </form>
+            </li>
+            
         <%}%>
     </ul>
 </body>

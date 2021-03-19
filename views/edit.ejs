@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        body {
+          color: #00704A;
+          background-color: blanchedalmond;
+          text-align: center;
+        }
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Plant</h1>
+
+    <nav>
+        <a href="/plant">Home</a> 
+    </nav>
+    
+    <div class="container">
+        <form action="/plant/<%=id%>?_method=PUT" method="POST">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" value="<%=plant.name%>"/>
+            <label for="scientific">Scientific</label>
+            <input type="text" name="scientific" id="scientific" value="<%=plant.scientific%>"/>
+            <label for="propagation">Propagation</label>
+            <input type="text" name="propagation" id="propagation" value="<%=plant.propagation%>"/> 
+            
+            
+            <input type="submit" value="Edit Plant">
+        </form>
+    </div>
+</body>
+</html>

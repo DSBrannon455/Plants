@@ -65,6 +65,21 @@ app.get('/plant/:id', (req, res) => {
 
 })
 
+// Create an edit route to render the edit.ejs
+// Setting up EDIT ROUTE
+app.get('/plant/:id/edit', (req, res)=>{
+
+    
+
+    res.render('edit.ejs', {
+      plant: plant[req.params.id], // sending the plant object to be edit
+      id: req.params.id // passing the index of the plant
+    })
+
+})
+
+
+
 app.listen(3000, () => {
     console.log('Server is listening!!!')
 })

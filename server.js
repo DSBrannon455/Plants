@@ -78,6 +78,17 @@ app.get('/plant/:id/edit', (req, res)=>{
 
 })
 
+// setting up PUT route
+app.put('/plant/:id', (req,res)=>{
+  
+    //  this will replace the plant[id] to req.body
+    plant[req.params.id] = req.body;
+  
+    // will send back to the the index page.
+    res.redirect('/plant')
+  
+  })
+
 
 
 app.listen(3000, () => {

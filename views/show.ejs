@@ -15,7 +15,7 @@
         }
     </style>
 </head>
-<body>
+<!-- <body>
     <h1>See All The Plants!</h1>
     
     <nav>
@@ -27,5 +27,18 @@
     <h2><%=plant.scientific%></h2>
 
     <h2><%=plant.propagation%></h2>
-</body>
+</body> -->
+<body>
+    <h1>Plant Show Page</h1>
+
+    <h2>This is the show page for <%= plant.name %></h2>
+
+   <p>The scientific name for <%= plant.name %> is <%= plant.scientific %></p>
+
+   <p>It was propagated by <%= plant.propagation %></p>
+
+   
+
+    <a href="/plant">Home</a>
+  </body>
 </html>

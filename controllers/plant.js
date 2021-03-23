@@ -56,15 +56,28 @@ router.delete('/:id', (req, res) => {
     res.redirect('/plant')
 })
 
-// // Show route
-// app.get('/plant/:id', (req, res) => {
+// Show route
+// router.get('/:id', (req, res) => {
 //     //res.send(pokemon[req.params.id])
 
-//     res.render('show.ejs', {
-//         plant: plant[req.params.id]
-//     })
+//     // res.render('show.ejs', {
+//     //     plant: plant[req.params.id]
+//     // })
 
+//     Plant.findById(req.params.id), (error, plant) => {
+//             res.render('show.ejs', {
+//                 plant: plants
+//         })
+        
+//     })
 // })
+
+// plant show route -- GET /plant/:id -- info about JUST ONE plant
+router.get('/:id', (req, res) => {
+    Plant.findById(req.params.id, (err, plant) => {
+        res.render('show.ejs', { plant: plant })
+    })
+})
 
 // // Create an edit route to render the edit.ejs
 // // Setting up EDIT ROUTE

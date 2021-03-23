@@ -22,7 +22,7 @@
         <a href="/plant">Home</a> 
     </nav>
     
-    <div class="container">
+    <!-- <div class="container">
         <form action="/plant/<%=id%>?_method=PUT" method="POST">
             <label for="name">Name</label>
             <input type="text" name="name" id="name" value="<%=plant.name%>"/>
@@ -34,6 +34,16 @@
             
             <input type="submit" value="Edit Plant">
         </form>
-    </div>
+    </div> -->
+    <form method="POST" action="/plant/<%= plant.id %>?_method=PUT">
+        <!-- NOTE: the form is pre-populated with values from the server  -->
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="<%=plant.name%>"/>
+        <label for="scientific">Scientific:</label>
+        <input type="text" name="scientific" value="<%=plant.scientific%>"/>
+        <label for="propagation">Propagation:</label>
+        <input type="text" name="propagation" value="<%=plant.propagation"/>
+        <input type="submit" name="" value="Edit Plant"/>
+      </form>
 </body>
 </html>

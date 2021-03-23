@@ -2,11 +2,7 @@ const express = require('express')
 const Plant = require('../models/plant')
 const router = express.Router()
 
-//Set up New ROUTE "new.ejs"
-router.get('/new', (req, res)=>{
-    res.render('new.ejs')
-    console.log(req.body)
-})
+
 
 //Index route
 router.get('/', (req,res) => {
@@ -28,6 +24,20 @@ router.get('/', (req,res) => {
     
 })
 
+//Set up New ROUTE "new.ejs"
+router.get('/new', (req, res)=>{
+    res.render('new.ejs')
+    console.log(req.body)
+})
+
+// plant show route -- GET /plant/:id -- info about JUST ONE plant
+router.get('/:id', (req, res) => {
+    Plant.findById(req.params.id, (err, plant) => {
+        res.render('show.ejs', { plant: plant })
+    })
+})
+
+// set up POST ROUTE "Create"
 router.post('/', (req,res) => {
     console.log(req.body)
     //plant.push(req.body)
@@ -72,12 +82,7 @@ router.delete('/:id', (req, res) => {
 //     })
 // })
 
-// plant show route -- GET /plant/:id -- info about JUST ONE plant
-router.get('/:id', (req, res) => {
-    Plant.findById(req.params.id, (err, plant) => {
-        res.render('show.ejs', { plant: plant })
-    })
-})
+
 
 // // Create an edit route to render the edit.ejs
 // // Setting up EDIT ROUTE
@@ -92,6 +97,16 @@ router.get('/:id', (req, res) => {
 
 // })
 
+// set up EDIT route
+router.get('/:id/edit', (req, res) => {
+    Fruit.findById(req.params.id, (error, plant) => {
+        res.render('edit.ejs', {
+            plant: plant // plant
+        })
+
+    })
+})
+
 // // setting up PUT route
 // app.put('/plant/:id', (req,res)=>{
   
@@ -102,5 +117,15 @@ router.get('/:id', (req, res) => {
 //     res.redirect('/plant')
   
 //   })
+
+// set up UPDATE route
+// PUT /plant/:id -- updates the information on the server
+// sometimes the HTTP method PATCH is used here instead
+router.put('/:id', (req, res) => {
+    
+    Plant.findByIdAndUpdate(req.params.id, req.body, { new: true }, (err, updatedPlant) => {
+        res.redirect('/plant')
+    })
+})
 
 module.exports = router

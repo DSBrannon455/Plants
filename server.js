@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const plant = require('./models/plant.js')
 const PORT = 3000
+// Here we are requiring the PLANT CONTROLLER
+
 
 //Dependencies
 

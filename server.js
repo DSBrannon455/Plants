@@ -3,6 +3,32 @@ const app = express()
 const plant = require('./models/plant.js')
 const PORT = 3000
 
+//Dependencies
+
+const mongoose = require('mongoose')
+
+// connect to Mongo and have it connect to the sub-database plants
+// if it does not exist it will be created
+
+// Global configuration
+const mongoURI = 'mongodb://127.0.0.1:27017/' + 'plants'
+const db = mongoose.connection
+
+// Connect to Mongo
+mongoose.connect(mongoURI, {
+    useFindAndModify: false,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}, () => {
+    console.log('the connection with mongod is established')
+})
+
+// Optional: provide error/success messages about the connections
+db.on('error', (err) => console.log(err.message + 'is mongod not running?'))
+db.on('connected', () => ('mongo connected: ', mongoURI))
+db.on('disconnected', () => console.log('mongo disconnected'))
+
+
 // MIDDLEWARE
 app.use(express.urlencoded({extended: true}))
 
@@ -28,68 +54,71 @@ app.get('/', (req,res) => {
     res.send('Welcome to the Plant App')
 })
 
-//Set up New ROUTE "new.ejs"
-app.get('/plant/new', (req, res)=>{
-    res.render('new.ejs')
-    console.log(req.body)
-})
+// //Set up New ROUTE "new.ejs"
+// app.get('/plant/new', (req, res)=>{
+//     res.render('new.ejs')
+//     console.log(req.body)
+// })
 
-//Index route
-app.get("/plant", (req,res) => {
-    //res.send(plant)
-    res.render('index.ejs', {
-        plant: plant
-    })
-})
+// //Index route
+// app.get("/plant", (req,res) => {
+//     //res.send(plant)
+//     res.render('index.ejs', {
+//         plant: plant
+//     })
+// })
 
-app.post('/plant', (req,res) => {
-    console.log(req.body)
-    plant.push(req.body)
-    res.redirect('/plant')
-})
+// app.post('/plant', (req,res) => {
+//     console.log(req.body)
+//     plant.push(req.body)
+//     res.redirect('/plant')
+// })
 
-app.delete('/plant/:id', (req, res) => {
-    // remove the item from the array
-    plant.splice(req.params.id, 1)
-    // redirect back to the index
-    res.redirect('/plant')
-})
+// app.delete('/plant/:id', (req, res) => {
+//     // remove the item from the array
+//     plant.splice(req.params.id, 1)
+//     // redirect back to the index
+//     res.redirect('/plant')
+// })
 
-// Show route
-app.get('/plant/:id', (req, res) => {
-    //res.send(pokemon[req.params.id])
+// // Show route
+// app.get('/plant/:id', (req, res) => {
+//     //res.send(pokemon[req.params.id])
 
-    res.render('show.ejs', {
-        plant: plant[req.params.id]
-    })
+//     res.render('show.ejs', {
+//         plant: plant[req.params.id]
+//     })
 
-})
+// })
 
-// Create an edit route to render the edit.ejs
-// Setting up EDIT ROUTE
-app.get('/plant/:id/edit', (req, res)=>{
+// // Create an edit route to render the edit.ejs
+// // Setting up EDIT ROUTE
+// app.get('/plant/:id/edit', (req, res)=>{
 
     
 
-    res.render('edit.ejs', {
-      plant: plant[req.params.id], // sending the plant object to be edit
-      id: req.params.id // passing the index of the plant
-    })
+//     res.render('edit.ejs', {
+//       plant: plant[req.params.id], // sending the plant object to be edit
+//       id: req.params.id // passing the index of the plant
+//     })
 
-})
+// })
 
-// setting up PUT route
-app.put('/plant/:id', (req,res)=>{
+// // setting up PUT route
+// app.put('/plant/:id', (req,res)=>{
   
-    //  this will replace the plant[id] to req.body
-    plant[req.params.id] = req.body;
+//     //  this will replace the plant[id] to req.body
+//     plant[req.params.id] = req.body;
   
-    // will send back to the the index page.
-    res.redirect('/plant')
+//     // will send back to the the index page.
+//     res.redirect('/plant')
   
-  })
+//   })
 
-
+//We want to import the plant controller
+//const express = require('express')
+const plantCon = require('./controllers/plant.js')
+app.use('/plant', plantCon)
 
 app.listen(3000, () => {
     console.log('Server is listening!!!')

@@ -99,7 +99,7 @@ router.delete('/:id', (req, res) => {
 
 // set up EDIT route
 router.get('/:id/edit', (req, res) => {
-    Fruit.findById(req.params.id, (error, plant) => {
+    Plant.findById(req.params.id, (error, plant) => {
         res.render('edit.ejs', {
             plant: plant // plant
         })

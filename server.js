@@ -124,6 +124,6 @@ app.get('/', (req,res) => {
 const plantCon = require('./controllers/plant.js')
 app.use('/plant', plantCon)
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
     console.log('Server is listening!!!')
 })

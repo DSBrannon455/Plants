@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
+require('dotenv').config()
+const PORT = process.env.PORT
 const plant = require('./models/plant.js')
-const PORT = 3000
+
 // Here we are requiring the PLANT CONTROLLER
 
 
@@ -13,7 +15,7 @@ const mongoose = require('mongoose')
 // if it does not exist it will be created
 
 // Global configuration
-const mongoURI = 'mongodb://127.0.0.1:27017/' + 'plants'
+const mongoURI = process.env.MONGODBURI
 const db = mongoose.connection
 
 // Connect to Mongo

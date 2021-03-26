@@ -9,3 +9,5 @@
 •	When a user clicks on the delete button, the plant will be deleted
 •	When a user clicks on the edit button, the user will see a form to edit an existing plant
 •	When a user clicks “edit plant”, the plant is edited; then the user is redirected to the index page -->
+
+<!-- Link to hosted working app:  https://plants-master.herokuapp.com/plant -->

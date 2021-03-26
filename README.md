@@ -11,3 +11,6 @@
 •	When a user clicks “edit plant”, the plant is edited; then the user is redirected to the index page -->
 
 <!-- Link to hosted working app:  https://plants-master.herokuapp.com/plant -->
+
+<!-- Link to wireframes:  ![image](https://user-images.githubusercontent.com/66333975/112670522-0301f880-8e2f-11eb-991e-b5392bb84252.png)
+![image](https://user-images.githubusercontent.com/66333975/112670575-1614c880-8e2f-11eb-9a7a-88578ddf6df8.png) -->
